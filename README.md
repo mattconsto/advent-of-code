@@ -4,3 +4,4 @@ This year I am going to complete [the advent of code](https://adventofcode.com) 
 
 1. [Bash](day1)
 2. [Perl](day2)
+2. [PHP](day3)
