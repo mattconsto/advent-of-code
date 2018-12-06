@@ -6,7 +6,7 @@ $claims = [];
 
 $safe = [];
 
-echo count($lines) . " claims\n";
+fwrite(STDERR, count($lines) . " claims\n");
 
 for($l = 0; $l < count($lines); $l++) {
 	list($id, $x, $y, $w, $h) = sscanf($lines[$l], '#%d @ %d,%d: %dx%d');
@@ -28,4 +28,4 @@ for($l = 0; $l < count($lines); $l++) {
 # No idea, but for some reason this is added.
 unset($safe[""]);
 
-echo 'safe ids: ' . join(',', array_keys($safe)) . "\n";
+echo join(',', array_keys($safe)) . "\n";

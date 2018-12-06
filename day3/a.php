@@ -4,7 +4,7 @@
 $lines = explode("\n", trim(file_get_contents('input.txt')));
 $claims = [];
 
-echo count($lines) . " claims\n";
+fwrite(STDERR, count($lines) . " claims\n");
 
 for($l = 0; $l < count($lines); $l++) {
 	list($id, $x, $y, $w, $h) = sscanf($lines[$l], '#%d @ %d,%d: %dx%d');
@@ -17,4 +17,4 @@ for($l = 0; $l < count($lines); $l++) {
 }
 
 # Count overlapping claims.
-echo count(array_filter($claims, function($v) {return $v > 1;})) . " overlaps\n";
+echo count(array_filter($claims, function($v) {return $v > 1;})) . "\n";

@@ -10,14 +10,22 @@ chomp(my @in = <$hdl>);
 close $hdl;
 
 # Find the entry with a levenshtein edit distance of 1
-for my $i (0 .. $#in) {
-	for my $j (($i+1) .. $#in) {
+my $i = 0, my $j = 0, my $last = 0;
+for (; !$last && $i < $#in; $i++) {
+	$j = $i + 1;
+	for (; !$last && $j < $#in; $j++) {
 		my $dist = levenshtein::levenshtein($in[$i], $in[$j]);
 		if ($dist <= 3) {
-			print "$i/$#in $in[$i] $in[$j] $dist\n";
-			if ($dist == 1) {exit;}
+			print STDERR "$i/$#in $in[$i] $in[$j] $dist\n";
+			if ($dist == 1) {$last = 1;}
 		}
 	}
 }
 
-# Now find the character that has changed manually
+# Find the common characters
+for my $k (0 .. length($in[$i]) - 1) {
+	if(substr($in[$i], $k, 1) eq substr($in[$j], $k, 1)) {
+		print substr($in[$i], $k, 1);
+	}
+}
+print "\n";
